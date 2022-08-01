@@ -46,9 +46,10 @@ class FollowSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         user = self.context.get('request').user
-        if data == user or Follow.objects.filter(
+        following = data.get('following')
+        if following == user or Follow.objects.filter(
             user=user,
-            following=data
+            following=following
         ).exists():
             raise serializers.ValidationError(
                 'Нельзя подписываться повторно и на самого себя!')
