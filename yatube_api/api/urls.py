@@ -13,10 +13,9 @@ router.register(
     views.CommentViewSet,
     basename='comments',
 )
-# router.register('follow', views.FollowViewSet, basename='follow',)
+router.register('follow', views.FollowViewSet, basename='follow',)
 
 urlpatterns = [
     path('v1/', include(router.urls)),
-    path('v1/follow/', views.FollowViewSet.as_view()),
     path('v1/', include('djoser.urls.jwt')),
 ]
